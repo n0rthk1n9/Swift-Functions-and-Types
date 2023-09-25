@@ -9,8 +9,15 @@ let ozmaAllGrades = [60, 96, 87, 42]
 // --------------------------------------
 
 //: ### Variadic Parameters
+print(jessyGrade, ozmaGrade, "meow")
 
+func getHighestGrade(for grades: Int...) -> Int {
+    grades.max() ?? 0
+}
 
+getHighestGrade()
+getHighestGrade(for: jessyGrade, ozmaGrade)
+// getHighestGrade(for: ozmaAllGrades)
 
 //: ### Inout Parameters
 
@@ -18,7 +25,13 @@ let ozmaAllGrades = [60, 96, 87, 42]
 var count = 0
 // --------------------------------------
 
+func incrementAndPrint(_ value: inout Int) {
+    value += 1
+    print(value)
+}
 
-
+incrementAndPrint(&count)
+incrementAndPrint(&count)
+incrementAndPrint(&count)
 
 //: [⇒ Next: 06 - Challenge - Overloads & Parameters](@next)
