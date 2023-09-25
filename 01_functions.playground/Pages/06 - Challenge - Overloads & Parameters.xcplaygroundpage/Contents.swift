@@ -8,53 +8,65 @@
  * different argument labels
  * different parameter types
  * different return types
-*/
+ */
 
 func multiply(number: Int, by multiplier: Int) -> Int {
-  return number * multiplier
+    return number * multiplier
 }
 
 // TODO: Write solution here
 
+func multiply(number: Double, by multiplier: Double) -> Double {
+    return number * multiplier
+}
+
+func multiply(number: Int, by multiplier: Int) -> Double {
+    return Double(number * multiplier)
+}
+
+let intResult: Int = multiply(number: 1, by: 2)
+let doubleResult: Double = multiply(number: 2, by: 2)
+let doubleMultiplyAndDoubleResult: Double = multiply(number: 1.2, by: 2.546)
 /*:
  ## Challenge 2
  Eliminate the overloads below by using a default value for a parameter.
-*/
+ */
 
 // --------------------------------------
-func printMultipleOf(multiplier: Int, number: Int) {
-  print("\(multiplier) * \(number)  = \(multiplier * number)")
-}
+// func printMultipleOf(multiplier: Int, number: Int) {
+//    print("\(multiplier) * \(number)  = \(multiplier * number)")
+// }
+//
+// func printMultipleOf(multiplier: Int) {
+//    print("\(multiplier) * 1)  = \(multiplier * 1)")
+// }
 
-func printMultipleOf(multiplier: Int) {
-  print("\(multiplier) * 1)  = \(multiplier * 1)")
-}
 // --------------------------------------
-
 
 // TODO: Write solution here
 
+func printMultipleOf(multiplier: Int, number: Int = 1) {
+    print("\(multiplier) * \(number)  = \(multiplier * number)")
+}
 
 // --------------------------------------
 printMultipleOf(multiplier: 7)
 printMultipleOf(multiplier: 11, number: 4)
 // --------------------------------------
 
-
 /*:
  ## Challenge 3
  1 - Change the function below so that it can modify the right parameter.
  2 - Call the function!
-*/
+ */
 
 var score = 50
 
-func update(score: Int, withPoints points: Int) {
-  score += points
+func update(score: inout Int, withPoints points: Int) {
+    score += points
 }
 
-update(score: score, withPoints: 100)
+update(score: &score, withPoints: 100)
 score
-
 
 //: [⇒ Next: 07 - Functions as Parameters](@next)
