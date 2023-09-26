@@ -24,6 +24,9 @@ let copyLinesNoParameterTypesAndReturnTypes: OffenseRepetition = { offense, repe
     print(String(repeating: "I must not \(String(offense)).", count: repeatCount))
 }
 
+let copyLinesNoParameterTypesAndReturnTypesAndParameterNames: OffenseRepetition = { print(String(repeating: "I must not \(String($0)).", count: $1)) }
+
 copyLines("lie", 18)
 copyLinesNoParameterTypesAndReturnTypes("lie", 18)
+copyLinesNoParameterTypesAndReturnTypesAndParameterNames("lie", 18)
 //: [⇒ Next: 06 - forEach and map](@next)
