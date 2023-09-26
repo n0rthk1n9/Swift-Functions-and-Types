@@ -7,14 +7,33 @@ var prices = [1.50, 10.00, 4.99, 2.30, 8.19]
 // --------------------------------------
 
 //: `forEach` - Loops over a collection and performs an operation
+for price in prices {
+    print(price)
+}
 
+prices.forEach { price in
+    print(price)
+}
 
-
+prices.forEach { print($0) }
 
 //: `map` - Loops over an array, executes closure code, returns a new array
+var arrayForSalePrices: [Double] = []
+for price in prices {
+    arrayForSalePrices.append(price * 0.9)
+}
 
+print(arrayForSalePrices)
 
+let salePrices = prices.map { price in
+    price * 0.9
+}
 
+let salePricesShort = prices.map { $0 * 0.9 }
 
+let priceLabels = salePrices.map { price -> String in
+    String(format: "%.2f", price)
+}
 
+print(priceLabels)
 //: [⇒ Next: 07 - compactMap & flatMap](@next)
