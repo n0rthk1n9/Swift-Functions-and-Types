@@ -3,25 +3,25 @@
 
 // --------------------------------------
 class Student {
-  let name: String
-  var grade: Int
-  var pet: String?
-  var libraryBooks: [String]
-  
-  init(name: String, grade: Int, pet: String? = nil, libraryBooks: [String]) {
-    self.name = name
-    self.grade = grade
-    self.pet = pet
-    self.libraryBooks = libraryBooks
-  }
-  
-  func getPassStatus(lowestPass: Int = 50) -> Bool {
-    grade >= lowestPass
-  }
-  
-  func earnExtraCredit() {
-    grade += 10
-  }
+    let name: String
+    var grade: Int
+    var pet: String?
+    var libraryBooks: [String]
+
+    init(name: String, grade: Int, pet: String? = nil, libraryBooks: [String]) {
+        self.name = name
+        self.grade = grade
+        self.pet = pet
+        self.libraryBooks = libraryBooks
+    }
+
+    func getPassStatus(lowestPass: Int = 50) -> Bool {
+        grade >= lowestPass
+    }
+
+    func earnExtraCredit() {
+        grade += 10
+    }
 }
 
 let chris = Student(name: "Chris", grade: 49, pet: "Mango", libraryBooks: ["The Book of Atrus", "Living by the Code", "Mastering Git"])
@@ -36,41 +36,52 @@ let students = [chris, sam, catie, andrea]
  ## Challenge 1 - `forEach` & `map`
  There are two `for` loops below.
  Rewrite one of them using `forEach` and the other with `map`
-*/
+ */
 
 for student in students {
-  student.earnExtraCredit()
+    student.earnExtraCredit()
 }
 
 var classLibraryBooks: [[String]] = []
 for student in students {
-  classLibraryBooks.append(student.libraryBooks)
+    classLibraryBooks.append(student.libraryBooks)
 }
 
+students.forEach { $0.earnExtraCredit() }
+classLibraryBooks = students.map { $0.libraryBooks }
 
-
+print(classLibraryBooks)
 
 /*:
  ## Challenge 2 - compactMap
  Replace the `for` loop below with compactMap.
  It will filter out the `nil` values for you!
-*/
+ */
 
 var classPets: [String] = []
 for student in students {
-  if let pet = student.pet {
-    classPets.append(pet)
-  }
+    if let pet = student.pet {
+        classPets.append(pet)
+    }
 }
 
+classPets = students.compactMap { student in
+    student.pet
+}
 
+classPets = students.compactMap { $0.pet }
+
+print(classPets)
 
 /*:
  ## Challenge 3 - flatMap
  In Challenge 1 you created `libraryBooks`, an array of String arrays!
  Try using flatMap to flatten all of the books into a single String array.
-*/
+ */
+classLibraryBooks = students.flatMap { student -> [String] in
+    student.libraryBooks
+}
 
-
+print(classLibraryBooks)
 
 //: [⇒ Next: 09 - filter, reduce, & sort](@next)
