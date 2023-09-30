@@ -11,6 +11,16 @@
 
 // TODO: Write solution here
 
+class Animal {
+    let name: String
+
+    required init(name: String) {
+        self.name = name
+    }
+
+    func speak() {}
+}
+
 /*:
  Create a class named `Dog` that…
  1. inherits from `Animal`
@@ -21,6 +31,32 @@
 
 // TODO: Write solution here
 
+class Dog: Animal {
+    var tricksLearned: Int
+
+    required convenience init(name: String) {
+        self.init(name: name, tricksLearned: 0)
+        speak()
+    }
+
+    init(name: String, tricksLearned: Int) {
+        self.tricksLearned = tricksLearned
+        super.init(name: name)
+        speak()
+    }
+
+    convenience init(tricksLearned: Int = .max) {
+        self.init(name: "Tramp", tricksLearned: tricksLearned)
+    }
+
+    override func speak() {
+        print("Wooooofff wooooof, my name is \(name)")
+    }
+}
+
+Dog(name: "Shadow")
+Dog(name: "Chance", tricksLearned: 3)
+Dog()
 /*:
  Add a second (non-required) initializer to `Dog` that takes both the `name` and `numTricksLearned` as parameters. Then call this initializer from the required initializer.
  */
@@ -30,4 +66,3 @@
  */
 
 //: [⇒ Next: 06 - Protocols](@next)
-
